@@ -1,4 +1,4 @@
-import Temp from '@/components/layout/Layout'
+import Layout from '@/components/layout/Layout'
 
 export const metadata = {
   title: 'Privacy Policy | Pacific Business & Accounting Group',

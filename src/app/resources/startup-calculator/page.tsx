@@ -1,6 +1,6 @@
-import Temp from '@/components/layout/Layout'
-import Temp from 'next/link'
-import Temp from './CalculatorClient'
+import Layout from '@/components/layout/Layout'
+import Link from 'next/link'
+import CalculatorClient from './CalculatorClient'
 
 export const metadata = {
   title: 'Costa Rica Startup Cost Calculator 2025 | Pacific Business & Accounting Group',

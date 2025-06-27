@@ -1,5 +1,5 @@
-import Temp from '@/components/layout/Layout'
-import Temp from 'next/link'
+import Layout from '@/components/layout/Layout'
+import Link from 'next/link'
 
 export const metadata = {
   title: 'Business Resources | Pacific Business & Accounting Group',

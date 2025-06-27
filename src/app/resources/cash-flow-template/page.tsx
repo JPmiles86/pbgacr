@@ -1,6 +1,6 @@
-import Temp from '@/components/layout/Layout'
-import Temp from 'next/link'
-import Temp from './DownloadButton'
+import Layout from '@/components/layout/Layout'
+import Link from 'next/link'
+import DownloadButton from './DownloadButton'
 
 export const metadata = {
   title: 'Cash Flow Template & Analysis Guide Costa Rica | Pacific Business & Accounting Group',
