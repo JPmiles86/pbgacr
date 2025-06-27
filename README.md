@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PBAGCR Website - Pacific Business & Accounting Group
 
-## Getting Started
+A comprehensive business services website for Costa Rica, built with Next.js 15, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## Features
+
+- 🏢 Complete business service pages (Accounting, Payroll, Tax, Legal, CPA, Banking)
+- 📊 Interactive calculators and tools
+- 📚 Comprehensive resource library with 2025 Costa Rica business information
+- 📱 Fully responsive design
+- 🌐 SEO optimized
+- ⚡ Fast loading with Next.js 15
+
+## Live Demo
+
+Visit: [pbagcr.vercel.app](https://pbagcr.vercel.app)
+
+## Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Deployment**: Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Pages Included
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Service Pages (6)
+- Accounting & Bookkeeping
+- Payroll Management
+- Audit & Tax Services
+- Legal Support
+- CPA Services
+- Banking Relations
 
-## Deploy on Vercel
+### Resource Pages (12+)
+- Business Structure Guide
+- Cash Flow Templates
+- Labor Law Updates
+- KPI Dashboard
+- Budget Planning
+- Startup Calculator
+- Tax Calendar
+- VAT Checklist
+- Corporate Tax Guide
+- Employee Benefits
+- Business Registration
+- Payroll Rates
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Company Pages
+- About Us
+- Team
+- Careers
+- FAQ
+- Contact
+- Blog
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contact
+
+Pacific Business & Accounting Group  
+Costa Rica Business Services  
+Phone: +506 2220-1302  
+Email: info@pbagcr.com
