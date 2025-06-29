@@ -13,6 +13,20 @@ const About = () => {
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Professional Image */}
+          <div>
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+              <Image
+                src="/stock/PBAG-BW-18.jpg"
+                alt="Professional business consulting and accounting expertise in Costa Rica"
+                width={600}
+                height={500}
+                className="object-cover w-full h-96"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/20 to-transparent"></div>
+            </div>
+          </div>
+
           {/* Content */}
           <div>
             <h2 className="text-4xl font-bold text-blue-900 mb-6">
@@ -54,20 +68,6 @@ const About = () => {
                   <div className="text-sm text-neutral-600">{stat.label}</div>
                 </div>
               ))}
-            </div>
-          </div>
-
-          {/* Professional Image */}
-          <div>
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-              <Image
-                src="/stock/PBAG-BW-18.jpg"
-                alt="Professional business consulting and accounting expertise in Costa Rica"
-                width={600}
-                height={500}
-                className="object-cover w-full h-96"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/20 to-transparent"></div>
             </div>
           </div>
         </div>
