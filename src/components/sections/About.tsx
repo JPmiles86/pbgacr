@@ -1,29 +1,7 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 const About = () => {
-  const values = [
-    {
-      icon: '🎯',
-      title: 'Integrity',
-      description: 'We conduct business with the highest ethical standards and transparency.'
-    },
-    {
-      icon: '🤝',
-      title: 'Partnership',
-      description: 'We build long-term relationships based on trust and mutual success.'
-    },
-    {
-      icon: '⚡',
-      title: 'Excellence',
-      description: 'We deliver exceptional service and results that exceed expectations.'
-    },
-    {
-      icon: '🌟',
-      title: 'Innovation',
-      description: 'We embrace modern solutions to solve traditional business challenges.'
-    }
-  ]
-
   const stats = [
     { number: '15+', label: 'Years in Costa Rica' },
     { number: '500+', label: 'Businesses Served' },
@@ -79,34 +57,17 @@ const About = () => {
             </div>
           </div>
 
-          {/* Values */}
+          {/* Professional Image */}
           <div>
-            <div className="bg-gradient-to-br from-blue-900 to-blue-800 rounded-2xl p-8 text-white">
-              <h3 className="text-2xl font-bold mb-8 text-center">Our Core Values</h3>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {values.map((value, index) => (
-                  <div key={index} className="text-center">
-                    <div className="text-3xl mb-3">{value.icon}</div>
-                    <h4 className="font-semibold mb-2 text-white">{value.title}</h4>
-                    <p className="text-sm text-blue-100 leading-relaxed">{value.description}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-8 p-6 bg-white bg-opacity-10 rounded-xl backdrop-blur-sm border border-white border-opacity-20">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-white font-bold">🇨🇷</span>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1 text-white">Costa Rican Experts</h4>
-                    <p className="text-sm text-blue-100">
-                      Deep understanding of local business culture, regulations, and opportunities.
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+              <Image
+                src="/stock/PBAG-BW-18.jpg"
+                alt="Professional business consulting and accounting expertise in Costa Rica"
+                width={600}
+                height={500}
+                className="object-cover w-full h-96"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/20 to-transparent"></div>
             </div>
           </div>
         </div>

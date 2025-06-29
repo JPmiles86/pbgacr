@@ -29,12 +29,45 @@ const ContactForm = () => {
     'Other'
   ]
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted:', formData)
-    // You can integrate with your backend or email service here
-    alert('Thank you for your message! We will contact you soon.')
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          service: '',
+          urgency: '',
+          preferredContact: 'email',
+          budget: '',
+          message: ''
+        })
+      } else {
+        setSubmitStatus('error')
+      }
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -48,7 +81,7 @@ const ContactForm = () => {
     <div className="bg-white rounded-xl shadow-lg p-8">
       <div className="mb-8">
         <h3 className="text-2xl font-bold text-blue-900 mb-2">Get Your Free Consultation</h3>
-        <p className="text-gray-600">Fill out the form below and we&apos;ll get back to you within 24 hours.</p>
+        <p className="text-neutral-700 font-medium">Fill out the form below and we&apos;ll get back to you within 24 hours.</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -168,10 +201,25 @@ const ContactForm = () => {
 
         <button
           type="submit"
-          className="w-full bg-accent hover:bg-accent-600 text-white py-4 px-6 rounded-lg font-semibold text-lg transition-colors duration-200 transform hover:scale-105"
+          disabled={isSubmitting}
+          className="w-full bg-accent hover:bg-accent-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-white py-4 px-6 rounded-lg font-semibold text-lg transition-colors duration-200 transform hover:scale-105 disabled:hover:scale-100"
         >
-          Send Message
+          {isSubmitting ? 'Sending...' : 'Send Message'}
         </button>
+
+        {submitStatus === 'success' && (
+          <div className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+            <p className="font-medium">✅ Message sent successfully!</p>
+            <p className="text-sm">We'll get back to you within 24 hours.</p>
+          </div>
+        )}
+
+        {submitStatus === 'error' && (
+          <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+            <p className="font-medium">❌ Failed to send message</p>
+            <p className="text-sm">Please try again or contact us directly at info@pbagcr.com</p>
+          </div>
+        )}
       </form>
 
       <div className="mt-8 pt-8 border-t border-gray-200">
@@ -179,17 +227,17 @@ const ContactForm = () => {
           <div>
             <div className="text-2xl mb-2">📞</div>
             <p className="font-medium text-primary">Call Us</p>
-            <p className="text-neutral-600">+506 2220-1302</p>
+            <p className="text-neutral-700 font-medium">+506 8925-7777</p>
           </div>
           <div>
             <div className="text-2xl mb-2">✉️</div>
             <p className="font-medium text-primary">Email Us</p>
-            <p className="text-neutral-600">info@pbagcr.com</p>
+            <p className="text-neutral-700 font-medium">info@pbagcr.com</p>
           </div>
           <div>
             <div className="text-2xl mb-2">📍</div>
             <p className="font-medium text-primary">Visit Us</p>
-            <p className="text-neutral-600">San José & Jaco</p>
+            <p className="text-neutral-700 font-medium">San José & Jaco</p>
           </div>
         </div>
       </div>

@@ -29,7 +29,7 @@ const AboutPage = () => {
       description: 'Modernized our operations with cutting-edge technology to better serve clients during challenging times.'
     },
     {
-      year: '2024',
+      year: '2025',
       title: 'Continued Growth',
       description: 'Today we serve 500+ businesses across Costa Rica with comprehensive financial and legal solutions.'
     }
@@ -162,11 +162,11 @@ const AboutPage = () => {
       </section>
 
       {/* Our Values */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-br from-blue-900 to-blue-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-blue-900 mb-4">Our Core Values</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold text-white mb-4">Our Core Values</h2>
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
               These fundamental principles guide everything we do and shape our relationships with clients and partners.
             </p>
           </div>

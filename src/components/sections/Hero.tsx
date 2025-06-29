@@ -1,15 +1,34 @@
 import Link from 'next/link'
+import Image from 'next/image'
+import { getHeroBackgroundClasses, getHeroBackgroundStyle, shouldUseImages } from '@/utils/backgroundMode'
 
 const Hero = () => {
+  const useImages = shouldUseImages()
+  
   return (
-    <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white overflow-hidden" style={{backgroundColor: '#003d87'}}>
-      {/* Background Pattern */}
+    <section className={getHeroBackgroundClasses()} style={getHeroBackgroundStyle()}>
+      {/* Background Image or Pattern */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 opacity-20">
-          <div className="w-full h-full" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}></div>
-        </div>
+        {useImages ? (
+          <>
+            {/* Stock Image Background */}
+            <Image
+              src="/stock/PBAG--8.jpg"
+              alt="Professional business environment in Costa Rica"
+              fill
+              sizes="100vw"
+              className="object-cover opacity-60"
+              priority
+            />
+          </>
+        ) : (
+          /* Original blue gradient pattern */
+          <div className="absolute inset-0 opacity-20">
+            <div className="w-full h-full" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            }}></div>
+          </div>
+        )}
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
@@ -22,7 +41,7 @@ const Hero = () => {
               in Costa Rica
             </h1>
             
-            <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+            <p className="text-xl text-white mb-8 leading-relaxed font-medium">
               Over 15 years of expertise in accounting, tax services, and business advisory. 
               Serving businesses from our San José and Jaco offices with comprehensive financial solutions.
             </p>
@@ -52,7 +71,7 @@ const Hero = () => {
                 </div>
                 <div>
                   <div className="text-white font-semibold">15+</div>
-                  <div className="text-blue-100 text-sm">Years Experience</div>
+                  <div className="text-white text-sm font-medium">Years Experience</div>
                 </div>
               </div>
               <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-lg p-3">
@@ -63,7 +82,7 @@ const Hero = () => {
                 </div>
                 <div>
                   <div className="text-white font-semibold">CPA</div>
-                  <div className="text-blue-100 text-sm">Certified</div>
+                  <div className="text-white text-sm font-medium">Certified</div>
                 </div>
               </div>
               <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-lg p-3">
@@ -74,7 +93,7 @@ const Hero = () => {
                 </div>
                 <div>
                   <div className="text-white font-semibold">Costa Rica</div>
-                  <div className="text-blue-100 text-sm">Local Experts</div>
+                  <div className="text-white text-sm font-medium">Local Experts</div>
                 </div>
               </div>
             </div>
@@ -83,7 +102,7 @@ const Hero = () => {
           {/* Visual Element */}
           <div className="hidden lg:block">
             <div className="relative">
-              <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
+              <div className="bg-blue-900/80 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-blue-700">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center">
@@ -93,7 +112,7 @@ const Hero = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-white">Financial Reporting</h3>
-                      <p className="text-blue-100 text-sm">Comprehensive business analytics</p>
+                      <p className="text-white text-sm font-medium">Comprehensive business analytics</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -104,7 +123,7 @@ const Hero = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-white">Tax Compliance</h3>
-                      <p className="text-blue-100 text-sm">Costa Rican tax expertise</p>
+                      <p className="text-white text-sm font-medium">Costa Rican tax expertise</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -115,7 +134,7 @@ const Hero = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-white">Legal Support</h3>
-                      <p className="text-blue-100 text-sm">Business & immigration law</p>
+                      <p className="text-white text-sm font-medium">Business & immigration law</p>
                     </div>
                   </div>
                 </div>

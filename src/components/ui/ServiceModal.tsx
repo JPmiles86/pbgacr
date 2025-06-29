@@ -109,7 +109,7 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
                     Get Free Consultation
                   </Link>
                   <Link
-                    href="tel:+50622201302"
+                    href="tel:+50689257777"
                     className="flex-1 border-2 border-yellow-500 text-yellow-600 hover:bg-yellow-50 px-4 py-3 rounded-lg font-medium text-center transition-colors duration-200"
                   >
                     Call Now

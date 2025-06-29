@@ -1,5 +1,6 @@
 import Layout from '@/components/layout/Layout'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export const metadata = {
   title: 'Business Blog | Pacific Business & Accounting Group',
@@ -33,7 +34,7 @@ const BlogPage = () => {
       publishDate: '2025-01-15',
       readTime: '8 min read',
       author: 'PBAG Tax Team',
-      image: '/api/placeholder/600/300',
+      image: '/stock/PBAG--5.jpg',
       featured: true,
       slug: '2025-tax-changes-costa-rica'
     },
@@ -45,7 +46,7 @@ const BlogPage = () => {
       publishDate: '2025-01-12',
       readTime: '6 min read',
       author: 'Legal Advisory Team',
-      image: '/api/placeholder/600/300',
+      image: '/stock/PBAG--14.jpg',
       featured: true,
       slug: 'digital-invoice-compliance-2025'
     }
@@ -61,6 +62,7 @@ const BlogPage = () => {
       publishDate: '2025-01-10',
       readTime: '5 min read',
       author: 'Payroll Specialists',
+      image: '/stock/PBAG--11.jpg',
       slug: 'payroll-tax-changes-small-business'
     },
     {
@@ -71,6 +73,7 @@ const BlogPage = () => {
       publishDate: '2025-01-08',
       readTime: '7 min read',
       author: 'Financial Advisory Team',
+      image: '/stock/PBAG--1.jpg',
       slug: 'year-end-financial-planning'
     },
     {
@@ -81,6 +84,7 @@ const BlogPage = () => {
       publishDate: '2025-01-05',
       readTime: '6 min read',
       author: 'Legal Advisory Team',
+      image: '/stock/PBAG-BW-14.jpg',
       slug: 'labor-law-amendments-2025'
     },
     {
@@ -91,6 +95,7 @@ const BlogPage = () => {
       publishDate: '2025-01-03',
       readTime: '4 min read',
       author: 'Accounting Team',
+      image: '/stock/PBAG--9.jpg',
       slug: 'monthly-bookkeeping-best-practices'
     },
     {
@@ -101,6 +106,7 @@ const BlogPage = () => {
       publishDate: '2024-12-28',
       readTime: '8 min read',
       author: 'Financial Advisory Team',
+      image: '/stock/PBAG--20.jpg',
       slug: 'cash-flow-management-strategies'
     },
     {
@@ -111,6 +117,7 @@ const BlogPage = () => {
       publishDate: '2024-12-25',
       readTime: '5 min read',
       author: 'Tax Compliance Team',
+      image: '/stock/PBAG--18.jpg',
       slug: 'vat-compliance-common-mistakes'
     }
   ]
@@ -226,12 +233,19 @@ const BlogPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {featuredArticles.map((article) => (
               <article key={article.id} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <div className="h-48 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-                  <div className="text-white text-center">
-                    <svg className="w-16 h-16 mx-auto mb-2 opacity-75" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
-                    </svg>
-                    <p className="text-sm opacity-75">Featured Article</p>
+                <div className="h-48 relative overflow-hidden">
+                  <Image
+                    src={article.image}
+                    alt={article.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                  <div className="absolute top-4 right-4">
+                    <span className="px-2 py-1 bg-red-500 text-white text-xs font-medium rounded-full">
+                      Featured
+                    </span>
                   </div>
                 </div>
                 
@@ -239,9 +253,6 @@ const BlogPage = () => {
                   <div className="flex items-center gap-2 mb-3">
                     <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">
                       {article.category}
-                    </span>
-                    <span className="px-2 py-1 bg-red-100 text-red-800 text-xs font-medium rounded-full">
-                      Featured
                     </span>
                   </div>
                   
@@ -287,10 +298,14 @@ const BlogPage = () => {
                 {recentPosts.map((post) => (
                   <article key={post.id} className="border-b border-gray-100 pb-8 last:border-0">
                     <div className="flex items-start gap-6">
-                      <div className="w-24 h-24 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex-shrink-0 flex items-center justify-center">
-                        <svg className="w-8 h-8 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
-                        </svg>
+                      <div className="w-24 h-24 rounded-lg flex-shrink-0 relative overflow-hidden">
+                        <Image
+                          src={post.image}
+                          alt={post.title}
+                          fill
+                          sizes="96px"
+                          className="object-cover"
+                        />
                       </div>
                       
                       <div className="flex-1">

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 import ServiceModal from '@/components/ui/ServiceModal'
 
@@ -149,14 +150,29 @@ const Services = () => {
   return (
     <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-blue-900 mb-4">
-            Comprehensive Business Solutions
-          </h2>
-          <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-            From accounting to legal support, we provide all the services your business needs to thrive in Costa Rica.
-          </p>
+        {/* Header with Image */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+          <div className="text-center lg:text-left">
+            <h2 className="text-4xl font-bold text-blue-900 mb-4">
+              Comprehensive Business Solutions
+            </h2>
+            <p className="text-xl text-neutral-600 leading-relaxed">
+              From accounting to legal support, we provide all the services your business needs to thrive in Costa Rica. Our experienced team combines local expertise with international standards.
+            </p>
+          </div>
+          
+          <div className="relative">
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+              <Image
+                src="/stock/PBAG-BW-12.jpg"
+                alt="Professional accounting and business services team in Costa Rica"
+                width={600}
+                height={400}
+                className="object-cover w-full h-80"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/20 to-transparent"></div>
+            </div>
+          </div>
         </div>
 
         {/* Services Grid */}
@@ -202,6 +218,64 @@ const Services = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Why Choose PBAG Section with Single Image */}
+        <div className="mt-20 bg-white rounded-3xl p-8 lg:p-12 shadow-lg">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h3 className="text-3xl font-bold text-blue-900 mb-6">
+                Why Choose <span className="text-yellow-500">PBAG</span>?
+              </h3>
+              <div className="space-y-6">
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-blue-900">15+ Years Local Experience</h4>
+                    <p className="text-gray-600">Deep understanding of Costa Rican business environment and regulations</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-blue-900">Bilingual Professional Team</h4>
+                    <p className="text-gray-600">Full support in English and Spanish with international standards</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-blue-900">CPA Certified Services</h4>
+                    <p className="text-gray-600">Professional certifications and expertise you can trust</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <div className="relative overflow-hidden rounded-xl shadow-lg">
+                <Image
+                  src="/stock/PBAG--13.jpg"
+                  alt="Modern Costa Rica business environment and professional services"
+                  width={500}
+                  height={400}
+                  className="object-cover w-full h-80"
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* CTA */}

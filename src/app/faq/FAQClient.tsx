@@ -5,9 +5,60 @@ import { useState } from 'react'
 
 export default function FAQClient() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null)
+  const [faqFormData, setFaqFormData] = useState({
+    name: '',
+    email: '',
+    question: '',
+    notify: false
+  })
+  const [faqSubmitting, setFaqSubmitting] = useState(false)
+  const [faqSubmitStatus, setFaqSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   const toggleFAQ = (index: number) => {
     setOpenFAQ(openFAQ === index ? null : index)
+  }
+
+  const handleFaqFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value, type } = e.target
+    const checked = (e.target as HTMLInputElement).checked
+    
+    setFaqFormData({
+      ...faqFormData,
+      [name]: type === 'checkbox' ? checked : value
+    })
+  }
+
+  const handleFaqSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setFaqSubmitting(true)
+    setFaqSubmitStatus('idle')
+
+    try {
+      const response = await fetch('/api/faq-question', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(faqFormData),
+      })
+
+      if (response.ok) {
+        setFaqSubmitStatus('success')
+        setFaqFormData({
+          name: '',
+          email: '',
+          question: '',
+          notify: false
+        })
+      } else {
+        setFaqSubmitStatus('error')
+      }
+    } catch (error) {
+      console.error('FAQ form submission error:', error)
+      setFaqSubmitStatus('error')
+    } finally {
+      setFaqSubmitting(false)
+    }
   }
 
   const businessFAQs = [
@@ -25,7 +76,7 @@ export default function FAQClient() {
     },
     {
       question: 'Do I need to be a Costa Rican resident to own a business?',
-      answer: 'No, foreign nationals can own 100% of most types of businesses in Costa Rica. However, certain regulated industries may have restrictions. You don&apos;t need to be a resident, but having local representation and understanding local regulations is crucial for success.'
+      answer: 'No, foreign nationals can own 100% of most types of businesses in Costa Rica. However, certain regulated industries may have restrictions. You don\'t need to be a resident, but having local representation and understanding local regulations is crucial for success.'
     },
     {
       question: 'What are the main taxes businesses pay in Costa Rica?',
@@ -75,10 +126,10 @@ export default function FAQClient() {
   const generalFAQs = [
     {
       question: 'How do I get started with PBAG services?',
-      answer: 'Getting started is easy. Contact us to schedule an initial consultation where we&apos;ll discuss your needs, explain our services, and provide a customized proposal. This consultation is typically free and helps us understand how we can best serve your business.'
+      answer: 'Getting started is easy. Contact us to schedule an initial consultation where we\'ll discuss your needs, explain our services, and provide a customized proposal. This consultation is typically free and helps us understand how we can best serve your business.'
     },
     {
-      question: 'What are PBAG&apos;s typical fees for services?',
+      question: 'What are PBAG\'s typical fees for services?',
       answer: 'Our fees vary depending on the services required and the complexity of your business. We offer competitive, transparent pricing and will provide a detailed proposal outlining all costs before beginning work. Many services can be provided on a fixed monthly fee basis for budget predictability.'
     },
     {
@@ -94,7 +145,7 @@ export default function FAQClient() {
       answer: 'We use modern, cloud-based accounting and business management software including QuickBooks, specialized Costa Rican accounting platforms, secure document sharing systems, and digital communication tools. This ensures efficiency, accuracy, and real-time access to your business information.'
     },
     {
-      question: 'Can PBAG help if I&apos;m having problems with existing tax or legal issues?',
+      question: 'Can PBAG help if I\'m having problems with existing tax or legal issues?',
       answer: 'Absolutely. We often help businesses resolve existing compliance issues, tax problems, legal disputes, and operational challenges. Our experienced team can assess your situation and develop a plan to address and resolve outstanding issues while preventing future problems.'
     }
   ]
@@ -108,10 +159,10 @@ export default function FAQClient() {
             <h1 className="text-4xl sm:text-5xl font-bold mb-6">
               Frequently Asked Questions
             </h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+            <p className="text-xl text-white max-w-3xl mx-auto font-medium">
               Find answers to common questions about doing business in Costa Rica, 
-              our services, and how PBAG can help your business succeed. Can't find 
-              what you're looking for? Contact us directly.
+              our services, and how PBAG can help your business succeed. Can\\'t find 
+              what you\\'re looking for? Contact us directly.
             </p>
           </div>
         </div>
@@ -296,6 +347,110 @@ export default function FAQClient() {
                 <div>Email: info@pbagcr.com</div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Ask a Question Form */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-blue-900 mb-4">
+              Have a Question Not Listed Here?
+            </h2>
+            <p className="text-xl text-gray-600">
+              Submit your question and we'll get back to you with an answer. Your question may be added to our FAQ to help other businesses.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-8">
+            <form onSubmit={handleFaqSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="faq-name" className="block text-sm font-medium text-gray-700 mb-2">
+                    Your Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="faq-name"
+                    name="name"
+                    required
+                    value={faqFormData.name}
+                    onChange={handleFaqFormChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent transition-colors"
+                    placeholder="Your full name"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="faq-email" className="block text-sm font-medium text-gray-700 mb-2">
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    id="faq-email"
+                    name="email"
+                    required
+                    value={faqFormData.email}
+                    onChange={handleFaqFormChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent transition-colors"
+                    placeholder="your@email.com"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="faq-question" className="block text-sm font-medium text-gray-700 mb-2">
+                  Your Question *
+                </label>
+                <textarea
+                  id="faq-question"
+                  name="question"
+                  required
+                  rows={4}
+                  value={faqFormData.question}
+                  onChange={handleFaqFormChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent transition-colors resize-none"
+                  placeholder="What would you like to know about doing business in Costa Rica or our services?"
+                />
+              </div>
+
+              <div className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="faq-notify"
+                  name="notify"
+                  checked={faqFormData.notify}
+                  onChange={handleFaqFormChange}
+                  className="w-4 h-4 text-blue-900 bg-gray-100 border-gray-300 rounded focus:ring-blue-900 focus:ring-2"
+                />
+                <label htmlFor="faq-notify" className="text-sm text-gray-600">
+                  Notify me when this question is added to the FAQ
+                </label>
+              </div>
+
+              <button
+                type="submit"
+                disabled={faqSubmitting}
+                className="w-full bg-yellow-500 hover:bg-yellow-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-white py-4 px-6 rounded-lg font-semibold text-lg transition-colors duration-200 transform hover:scale-105 disabled:hover:scale-100"
+              >
+                {faqSubmitting ? 'Submitting...' : 'Submit Question'}
+              </button>
+
+              {faqSubmitStatus === 'success' && (
+                <div className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                  <p className="font-medium">✅ Question submitted successfully!</p>
+                  <p className="text-sm">We'll review your question and get back to you soon.</p>
+                </div>
+              )}
+
+              {faqSubmitStatus === 'error' && (
+                <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                  <p className="font-medium">❌ Failed to submit question</p>
+                  <p className="text-sm">Please try again or contact us directly at info@pbagcr.com</p>
+                </div>
+              )}
+            </form>
           </div>
         </div>
       </section>

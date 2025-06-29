@@ -176,10 +176,10 @@ const StartupCalculatorPage = () => {
               </svg>
             </Link>
             <a
-              href="tel:+50622201302"
+              href="tel:+50689257777"
               className="inline-flex items-center border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200"
             >
-              Call +506 2220-1302
+              Call +506 8925-7777
             </a>
           </div>
         </div>

@@ -45,7 +45,7 @@ const Footer = () => {
             </p>
             <div className="text-sm text-blue-100 text-center md:text-left">
               <p className="mb-1">📍 San José & Jaco Offices</p>
-              <p className="mb-1">📞 +506 2220-1302</p>
+              <p className="mb-1">📞 +506 8925-7777</p>
               <p>✉️ info@pbagcr.com</p>
             </div>
           </div>

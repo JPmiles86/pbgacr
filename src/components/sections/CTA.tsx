@@ -25,10 +25,10 @@ const CTA = () => {
             <div className="flex items-center gap-4 text-blue-100">
               <span className="text-sm">or call us directly:</span>
               <a 
-                href="tel:+50622201302" 
+                href="tel:+50689257777" 
                 className="text-white font-semibold hover:text-yellow-300 transition-colors duration-200"
               >
-                +506 2220-1302
+                +506 8925-7777
               </a>
             </div>
           </div>

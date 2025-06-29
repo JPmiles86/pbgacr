@@ -3,8 +3,10 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 
 const Header = () => {
+  const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
@@ -41,6 +43,13 @@ const Header = () => {
     { name: 'Contact', href: '/contact' },
   ]
 
+  const isActiveLink = (href: string) => {
+    if (href === '/') {
+      return pathname === '/'
+    }
+    return pathname.startsWith(href)
+  }
+
   return (
     <header className={`bg-white border-b border-gray-100 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled ? 'shadow-lg backdrop-blur-sm bg-white/95' : 'shadow-sm'
@@ -73,15 +82,30 @@ const Header = () => {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 hover:text-blue-900 font-medium transition-colors duration-200"
+                className={`font-medium transition-colors duration-200 relative ${
+                  isActiveLink(item.href)
+                    ? 'text-blue-900 font-bold'
+                    : 'text-gray-700 hover:text-blue-900'
+                }`}
               >
                 {item.name}
+                {isActiveLink(item.href) && (
+                  <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-yellow-500 rounded-full"></div>
+                )}
               </Link>
             ))}
           </nav>
 
-          {/* CTA Button */}
+          {/* Language Toggle & CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
+            <div className="flex space-x-1 mr-2">
+              <button className="text-white bg-blue-900 px-2 py-1 rounded text-sm font-medium">
+                EN
+              </button>
+              <button className="text-gray-600 hover:text-blue-900 text-sm font-medium">
+                ES
+              </button>
+            </div>
             <Link
               href="/contact"
               className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200"
@@ -115,15 +139,27 @@ const Header = () => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="block px-3 py-2 text-gray-700 hover:text-blue-900 font-medium transition-colors duration-200"
+                  className={`block px-3 py-2 font-medium transition-colors duration-200 ${
+                    isActiveLink(item.href)
+                      ? 'text-blue-900 font-bold bg-yellow-50 border-l-4 border-yellow-500'
+                      : 'text-gray-700 hover:text-blue-900'
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
+              <div className="flex space-x-1 px-3 py-2 mt-4">
+                <button className="text-white bg-blue-900 px-2 py-1 rounded text-sm font-medium">
+                  EN
+                </button>
+                <button className="text-gray-600 hover:text-blue-900 text-sm font-medium">
+                  ES
+                </button>
+              </div>
               <Link
                 href="/contact"
-                className="block px-3 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg font-medium transition-colors duration-200 mt-4"
+                className="block px-3 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg font-medium transition-colors duration-200 mt-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Get Started
